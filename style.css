@@ -21,6 +21,13 @@ body {
   font-size: 1.5rem;
 }
 
+.chonky-title {
+  font-family: 'Baloo 2', cursive; 
+  font-size: 6rem; 
+  color: white; 
+}
+
+
 .intro-text {
   margin: 2rem;
   text-align: center;
@@ -144,7 +151,6 @@ body {
 }
 
 
-/* Carrito de compras */
 #carritoContainer {
   margin: 2rem auto;
   padding: 1rem;

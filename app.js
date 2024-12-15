@@ -35,7 +35,6 @@ function addToCart() {
     return;
   }
 
-  // Check for a valid promo code and apply the discount if applicable
   const promoCode = document.getElementById('promoCode').value.trim();
   const PromoCodeGuardado = localStorage.getItem('promoCode');
   let discount = 0;
