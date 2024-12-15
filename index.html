@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chonky Food</title>
+  <link rel="stylesheet" href="style.css">
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  </head>
+</head>
+<body>
+
+<div id="promoModal" class="modal">
+  <div class="modal-content">
+    <h2>Obtiene un código de descuento!</h2>
+    <p>Ingresa tu email y desbloquearás un beneficio exclusivo!</p>
+    <input type="email" id="emailInput" placeholder="Ingresa aquí tu email" required>
+    <button onclick="generatePromoCode()">Dame el código</button>
+    <p id="promoCodeDisplay"></p>
+    <button onclick="closeModal()">Cerrar</button>
+  </div>
+</div>
+  
+<nav class="navbar">
+  <div class="navbar-logo">Tienda de alimentos para mascotas</div>
+</nav>
+
+<div class="intro-text">
+  Bienvenido a Chonky Food, el sitio web favorito de tu mascota!
+</div>
+
+<section class="product-section">
+  <div class="product-card">
+    <img src="img/product1.webp" alt="Product 1">
+    <h3>Alimento perro adulto</h3>
+    <select class="size-dropdown" data-price="5">
+      <option value="5000">Chico - $5000</option>
+      <option value="10000">Grande - $10000</option>
+    </select>
+    <button onclick="showOrderForm(this)">Agregar a mi pedido</button>
+  </div>
+  
+  <div class="product-card">
+      <img src="img/product2.webp" alt="Product 2">
+      <h3>Alimento perro mediano</h3>
+      <select class="size-dropdown" data-price="5">
+          <option value="7500">Mediano - $7500</option>
+          <option value="15000">Extra-grande - $15000</option>
+      </select>
+      <button onclick="showOrderForm(this)">Agregar a mi pedido</button>
+  </div>
+  
+  <div class="product-card">
+      <img src="img/product3.jpeg" alt="Product 3">
+      <h3>Alimento gato adulto</h3>
+      <select class="size-dropdown" data-price="5">
+        <option value="5000">Chico - $5000</option>
+        <option value="10000">Grande - $10000</option>
+      </select>
+      <button onclick="showOrderForm(this)">Agregar a mi pedido</button>
+  </div>
+
+  <div class="product-card">
+      <img src="img/product4.jpeg" alt="Product 4">
+      <h3>Alimento gato mediano</h3>
+      <select class="size-dropdown" data-price="5">
+        <option value="5000">Chico - $5000</option>
+        <option value="10000">Grande - $10000</option>
+      </select>
+      <button onclick="showOrderForm(this)">Agregar a mi pedido</button>
+  </div>
+
+  <div class="product-card">
+    <img src="img/product5.webp" alt="Product 5">
+    <h3>Alimento peces</h3>
+    <select class="size-dropdown" data-price="9">
+      <option value="3000">Mediano - $3000</option>
+    </select>
+    <button onclick="showOrderForm(this)">Agregar a mi pedido</button>
+  </div>
+
+  <div class="product-card">
+    <img src="img/product6.jpeg" alt="Product 6">
+    <h3>Alimento loro</h3>
+    <select class="size-dropdown" data-price="10">
+      <option value="10000">Grande - $10000</option>
+    </select>
+    <button onclick="showOrderForm(this)">Agregar a mi pedido</button>
+  </div>
+</section>
+
+<section id="orderForm" class="order-form">
+  <h2>Hace tu pedido</h2>
+  <label>Producto:</label>
+  <input type="text" id="producto" readonly>
+  
+  <label>Cantidad:</label>
+  <input type="number" id="cantidad" value="1" min="1">
+  
+  <label>Precio:</label>
+  <input type="text" id="precio" readonly>
+  
+  <label>Código de descuento:</label>
+  <div class="promo-code-section">
+      <input type="text" id="promoCode" placeholder="Ingresa el código">
+      <button onclick="applyDiscount()">Aplicar descuento</button>
+  </div>
+  
+  <div id="subtotal">Subtotal: $0</div>
+  <button onclick="addToCart()">Añadir al carrito</button> 
+</section>
+
+<section id="carritoContainer" class="cart-container">
+  <h2>Carrito de Compras</h2>
+
+  <div id="cartItems"></div>
+  <button id="finalizarCompraBtn" onclick="completePurchase()">Finalizar Compra</button>
+</section>
+
+
+<script src="app.js"></script>  <!-- Archivo principal de lógica -->
+
+</body>
+</html>
