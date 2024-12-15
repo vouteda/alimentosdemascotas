@@ -26,50 +26,64 @@ function calculateSubtotal() {
 }
 
 function addToCart() {
-    const productName = document.getElementById('producto').value;
-    const quantity = document.getElementById('cantidad').value;
-    const price = document.getElementById('precio').value;
-  
-    if (!productName || !quantity || !price) {
-      alert("Completa todos los campos del formulario.");
-      return;
-    }
-  
-    const carritoContainer = document.getElementById("carritoContainer");
-    const cartItemsContainer = document.getElementById("cartItems"); 
-    const finalizarCompraBtn = document.getElementById("finalizarCompraBtn");
-  
-    const cartItem = document.createElement("div");
-    cartItem.classList.add("cart-item");
-  
-    cartItem.innerHTML = `
-      <div>
-        <strong>${productName}</strong> <br>
-        Cantidad: ${quantity} - Precio: $${price}
-      </div>
-      <button class="remove-btn" onclick="removeCartItem(this)">
-        <i class="fa fa-trash"></i> Eliminar
-      </button>
-    `;
-  
-    cartItemsContainer.appendChild(cartItem); 
-    carritoContainer.insertBefore(cartItemsContainer, finalizarCompraBtn);
-    
-    document.getElementById('orderForm').style.display = 'none';
+  const productName = document.getElementById('producto').value;
+  const quantity = parseInt(document.getElementById('cantidad').value, 10) || 1;
+  let price = parseFloat(document.getElementById('precio').value);
+
+  if (!productName || !quantity || isNaN(price)) {
+    alert("Completa todos los campos del formulario.");
+    return;
   }
-  
-  window.onload = function() {
-    document.getElementById('promoModal').style.display = 'flex';
+
+  // Check for a valid promo code and apply the discount if applicable
+  const promoCode = document.getElementById('promoCode').value.trim();
+  const PromoCodeGuardado = localStorage.getItem('promoCode');
+  let discount = 0;
+
+  if (promoCode === PromoCodeGuardado) {
+    discount = 0.1 * price;
+    alert("Descuento aplicado: 10%!");
+  }
+
+  const discountedPrice = price - discount;
+  const subtotal = discountedPrice * quantity;
+
+  const carritoContainer = document.getElementById("carritoContainer");
+  const cartItemsContainer = document.getElementById("cartItems");
+  const finalizarCompraBtn = document.getElementById("finalizarCompraBtn");
+
+  const cartItem = document.createElement("div");
+  cartItem.classList.add("cart-item");
+
+  cartItem.innerHTML = `
+    <div>
+      <strong>${productName}</strong> <br>
+      Cantidad: ${quantity} - Precio: $${price.toFixed(2)} <br>
+      Subtotal: $${subtotal.toFixed(2)}
+    </div>
+    <button class="remove-btn" onclick="removeCartItem(this)">
+      <i class="fa fa-trash"></i> Eliminar
+    </button>
+  `;
+
+  cartItemsContainer.appendChild(cartItem);
+  carritoContainer.insertBefore(cartItemsContainer, finalizarCompraBtn);
+
+  document.getElementById('orderForm').style.display = 'none';
+}
+
+window.onload = function() {
+  document.getElementById('promoModal').style.display = 'flex';
 };
 
 function generatePromoCode() {
   const email = document.getElementById('emailInput').value;
   if (email) {
-      const promoCode = Math.random().toString(36).substring(2, 11).toUpperCase();
-      localStorage.setItem('promoCode', promoCode);
-      document.getElementById('promoCodeDisplay').textContent = `Tu codigo de descuento es: ${promoCode}`;
+    const promoCode = Math.random().toString(36).substring(2, 11).toUpperCase();
+    localStorage.setItem('promoCode', promoCode);
+    document.getElementById('promoCodeDisplay').textContent = `Tu codigo de descuento es: ${promoCode}`;
   } else {
-      alert('Por favor ingresa tu email');
+    alert('Por favor ingresa tu email');
   }
 }
 
@@ -80,15 +94,15 @@ function applyDiscount() {
   let precio = parseFloat(document.getElementById('precio').value.replace('$', ''));
 
   if (isNaN(precio)) {
-      precio = 0;
+    precio = 0;
   }
 
   let discount = 0;
   if (promoCode === PromoCodeGuardado) {
-      descuento = 0.1 * precio;
+    discount = 0.1 * precio;
   }
 
-  const subtotal = (precio - descuento) * cantidad;
+  const subtotal = (precio - discount) * cantidad;
   document.getElementById('subtotal').textContent = `Subtotal: $${subtotal.toFixed(2)}`;
 }
 
@@ -116,5 +130,3 @@ function completePurchase() {
 
   alert(`Se ha enviado un email a ${emailInput} con los detalles para finalizar y pagar la compra.`);
 }
-
-
