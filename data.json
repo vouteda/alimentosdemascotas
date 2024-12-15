@@ -1,0 +1,55 @@
+{
+    "productos": [
+      {
+        "name": "Alimento perro adulto",
+        "price": 5000,
+        "sizes": [
+          { "size": "Chico", "price": 5000 },
+          { "size": "Grande", "price": 10000 }
+        ]
+      },
+      {
+        "name": "Alimento perro mediano",
+        "price": 7500,
+        "sizes": [
+          { "size": "Mediano", "price": 7500 },
+          { "size": "Extra-grande", "price": 15000 }
+        ]
+      },
+      {
+        "name": "Alimento gato adulto",
+        "price": 5000,
+        "sizes": [
+          { "size": "Chico", "price": 5000 },
+          { "size": "Grande", "price": 10000 }
+        ]
+      },
+      {
+        "name": "Alimento gato mediano",
+        "price": 5000,
+        "sizes": [
+          { "size": "Chico", "price": 5000 },
+          { "size": "Grande", "price": 10000 }
+        ]
+      },
+      {
+        "name": "Alimento peces",
+        "price": 3000,
+        "sizes": [
+          { "size": "Mediano", "price": 3000 }
+        ]
+      },
+      {
+        "name": "Alimento loro",
+        "price": 10000,
+        "sizes": [
+          { "size": "Grande", "price": 10000 }
+        ]
+      }
+    ],
+    "descuento": {
+      "codigo": "DESCUENTO10",
+      "valor": 0.1
+    }
+  }
+  
